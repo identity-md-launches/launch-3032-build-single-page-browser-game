@@ -1,0 +1,23 @@
+[
+  {
+    "selector": "#help-title",
+    "foreground": "rgb(247, 242, 233)",
+    "background": "rgb(34, 33, 36)",
+    "opaque": true,
+    "ratio": 14.364482384997745
+  },
+  {
+    "selector": ".instructions li",
+    "foreground": "rgb(217, 211, 219)",
+    "background": "rgb(34, 33, 36)",
+    "opaque": true,
+    "ratio": 10.900514893115584
+  },
+  {
+    "selector": ".help-note",
+    "foreground": "rgb(170, 164, 173)",
+    "background": "rgb(34, 33, 36)",
+    "opaque": true,
+    "ratio": 6.577114384755906
+  }
+]

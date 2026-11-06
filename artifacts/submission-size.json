@@ -1,0 +1,189 @@
+{
+  "limitBytes": 8388608,
+  "totalAddedContentBytes": 1173464,
+  "fileCount": 35,
+  "totalPathBudgetBytes": 3305472,
+  "productionExportBytes": 122788,
+  "withinBudget": true,
+  "sourceMatchesExport": true,
+  "assetsMatch": true,
+  "ignoreFilesChanged": true,
+  "explicitPathBudget": "PATH_BUDGET.json",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 1122,
+      "budgetBytes": 4096
+    },
+    {
+      "path": "DESIGN.md",
+      "bytes": 9889,
+      "budgetBytes": 24576
+    },
+    {
+      "path": "PATH_BUDGET.json",
+      "bytes": 1660,
+      "budgetBytes": 8192
+    },
+    {
+      "path": "README.md",
+      "bytes": 5470,
+      "budgetBytes": 16384
+    },
+    {
+      "path": "artifacts/THIRD_PARTY_NOTICES.md",
+      "bytes": 1087,
+      "budgetBytes": 4096
+    },
+    {
+      "path": "artifacts/accessibility.json",
+      "bytes": 2353,
+      "budgetBytes": 16384
+    },
+    {
+      "path": "artifacts/design-guidance-LICENSE.txt",
+      "bytes": 11964,
+      "budgetBytes": 24576
+    },
+    {
+      "path": "artifacts/help-contrast.json",
+      "bytes": 513,
+      "budgetBytes": 8192
+    },
+    {
+      "path": "artifacts/interaction-results.json",
+      "bytes": 1814,
+      "budgetBytes": 16384
+    },
+    {
+      "path": "artifacts/screenshots/desktop-1440.png",
+      "bytes": 154567,
+      "budgetBytes": 393216
+    },
+    {
+      "path": "artifacts/screenshots/forced-colors-before.png",
+      "bytes": 58862,
+      "budgetBytes": 262144
+    },
+    {
+      "path": "artifacts/screenshots/forced-colors.png",
+      "bytes": 72341,
+      "budgetBytes": 262144
+    },
+    {
+      "path": "artifacts/screenshots/help-dialog.png",
+      "bytes": 59706,
+      "budgetBytes": 262144
+    },
+    {
+      "path": "artifacts/screenshots/keyboard-focus.png",
+      "bytes": 157752,
+      "budgetBytes": 393216
+    },
+    {
+      "path": "artifacts/screenshots/mobile-320.png",
+      "bytes": 123800,
+      "budgetBytes": 262144
+    },
+    {
+      "path": "artifacts/screenshots/mobile-390.png",
+      "bytes": 88991,
+      "budgetBytes": 262144
+    },
+    {
+      "path": "artifacts/screenshots/upgraded-mobile.png",
+      "bytes": 124681,
+      "budgetBytes": 262144
+    },
+    {
+      "path": "artifacts/submission-size.json",
+      "bytes": 3976,
+      "budgetBytes": 16384
+    },
+    {
+      "path": "artifacts/taste-checks.json",
+      "bytes": 3434,
+      "budgetBytes": 16384
+    },
+    {
+      "path": "artifacts/validation.md",
+      "bytes": 16387,
+      "budgetBytes": 32768
+    },
+    {
+      "path": "artwork/share-card.svg",
+      "bytes": 3205,
+      "budgetBytes": 16384
+    },
+    {
+      "path": "assets/favicon.svg",
+      "bytes": 766,
+      "budgetBytes": 4096
+    },
+    {
+      "path": "assets/share-card.png",
+      "bytes": 83576,
+      "budgetBytes": 262144
+    },
+    {
+      "path": "dist/assets/favicon.svg",
+      "bytes": 766,
+      "budgetBytes": 4096
+    },
+    {
+      "path": "dist/assets/share-card.png",
+      "bytes": 83576,
+      "budgetBytes": 262144
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 38446,
+      "budgetBytes": 65536
+    },
+    {
+      "path": "index.html",
+      "bytes": 38446,
+      "budgetBytes": 65536
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 1638,
+      "budgetBytes": 8192
+    },
+    {
+      "path": "package.json",
+      "bytes": 515,
+      "budgetBytes": 4096
+    },
+    {
+      "path": "scripts/browser.mjs",
+      "bytes": 635,
+      "budgetBytes": 4096
+    },
+    {
+      "path": "scripts/build.mjs",
+      "bytes": 1014,
+      "budgetBytes": 8192
+    },
+    {
+      "path": "scripts/preview.mjs",
+      "bytes": 1553,
+      "budgetBytes": 8192
+    },
+    {
+      "path": "scripts/share-card.mjs",
+      "bytes": 611,
+      "budgetBytes": 4096
+    },
+    {
+      "path": "scripts/typecheck.mjs",
+      "bytes": 1627,
+      "budgetBytes": 8192
+    },
+    {
+      "path": "scripts/validate.mjs",
+      "bytes": 16721,
+      "budgetBytes": 32768
+    }
+  ]
+}

@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#19181b">
+  <title>Hamster Tap Tycoon</title>
+  <meta name="description" content="Small paws. Big business. Tap your hamster, collect coins and build a tiny empire with three stackable upgrades. A free, offline-friendly browser game.">
+  <meta property="og:title" content="Hamster Tap Tycoon">
+  <meta property="og:description" content="Small paws. Big business. A tiny hamster clicker with a big entrepreneurial spirit.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./assets/share-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="A cheerful golden hamster coin beside the title Hamster Tap Tycoon and the words Small paws. Big business.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+  <style>
+    :root {
+      color-scheme: dark;
+      --neutral-950: #19181b;
+      --neutral-900: #222124;
+      --neutral-850: #2b292d;
+      --neutral-800: #353237;
+      --neutral-700: #4b464d;
+      --neutral-400: #aaa4ad;
+      --neutral-200: #d9d3db;
+      --neutral-100: #f7f2e9;
+      --gold-300: #f5d797;
+      --gold-400: #f1c56c;
+      --green-300: #add6a7;
+      --color-page: var(--neutral-950);
+      --color-surface: var(--neutral-900);
+      --color-surface-hover: var(--neutral-850);
+      --color-control: var(--neutral-800);
+      --color-control-border: var(--neutral-700);
+      --color-border: var(--neutral-800);
+      --color-text: var(--neutral-100);
+      --color-muted: var(--neutral-400);
+      --color-subtle: var(--neutral-200);
+      --color-accent: var(--gold-400);
+      --color-accent-hover: var(--gold-300);
+      --color-on-accent: #392b1d;
+      --color-focus: var(--gold-300);
+      --color-success: var(--green-300);
+      --font-ui: ui-rounded, 'Trebuchet MS', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --text-caption: .75rem;
+      --text-small: .875rem;
+      --text-body: 1rem;
+      --text-heading: 1.25rem;
+      --text-title: 1.5rem;
+      --text-balance: 3.5rem;
+      --space-1: .25rem;
+      --space-2: .5rem;
+      --space-3: .75rem;
+      --space-4: 1rem;
+      --space-5: 1.5rem;
+      --space-6: 2rem;
+      --space-7: 3rem;
+      --radius-control: .75rem;
+      --radius-panel: 1.5rem;
+      --ease: cubic-bezier(.2, 0, 0, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; background: var(--color-page); color: var(--color-text); font: 400 var(--text-body)/1.5 var(--font-ui); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    button, kbd { font: inherit; }
+    button { color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+    button:disabled { cursor: not-allowed; }
+    button:focus-visible, a:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 5px; }
+    h1, h2, h3, p, ul, dl, dd { margin: 0; }
+    h1, h2, h3 { font-weight: 700; text-wrap: balance; }
+    h1 { font-size: var(--text-heading); line-height: 1.2; letter-spacing: -.03em; }
+    h2 { font-size: var(--text-heading); line-height: 1.2; letter-spacing: -.02em; }
+    h3 { font-size: var(--text-body); line-height: 1.4; }
+    svg { display: block; flex-shrink: 0; }
+    ::selection { color: var(--color-on-accent); background: var(--color-accent); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0; }
+    .shell { width: min(100% - 2rem, 1120px); margin-inline: auto; }
+    .site-header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 88px; border-block-end: 1px solid var(--color-border); }
+    .brand { display: flex; align-items: center; gap: var(--space-3); }
+    .brand-mark { width: 38px; height: 38px; }
+    .brand-name { display: block; }
+    .brand-tagline { margin-block-start: var(--space-1); color: var(--color-muted); font-size: var(--text-caption); }
+    .help-button { display: flex; align-items: center; justify-content: center; gap: var(--space-2); min-width: 44px; min-height: 44px; padding: var(--space-2); border: 0; background: transparent; color: var(--color-subtle); font-size: var(--text-small); border-radius: var(--radius-control); }
+    .help-button svg { width: 20px; height: 20px; }
+    .help-label { display: none; }
+    .game-layout { padding-block: var(--space-5) var(--space-6); }
+    .play-area { min-width: 0; text-align: center; }
+    .balance-label { display: flex; align-items: center; justify-content: center; gap: var(--space-2); font-size: var(--text-small); color: var(--color-muted); }
+    .coin-icon { width: 20px; height: 20px; color: var(--color-accent); }
+    .balance { display: block; margin-block: var(--space-1) var(--space-4); font-size: var(--text-balance); font-weight: 700; line-height: 1.12; letter-spacing: -.04em; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+    .earning-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-2); width: min(100%, 380px); margin-inline: auto; }
+    .stat { display: flex; flex-direction: column-reverse; gap: var(--space-1); }
+    .stat + .stat { border-inline-start: 1px solid var(--color-border); }
+    .stat dt { font-size: var(--text-caption); color: var(--color-muted); }
+    .stat dd { font-size: var(--text-body); font-weight: 700; line-height: 1.25; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+    .stat-symbol { color: var(--color-muted); font-weight: 400; margin-inline-end: var(--space-1); }
+    .stage { position: relative; display: grid; place-items: center; width: min(100%, 390px); height: 302px; margin: var(--space-3) auto 0; isolation: isolate; }
+    .stage::before { content: ''; position: absolute; inset: 8px 3px; z-index: -2; background-image: radial-gradient(circle, #655439 1px, transparent 1px); background-size: 22px 22px; opacity: .35; mask-image: radial-gradient(ellipse, #000 20%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse, #000 20%, transparent 70%); }
+    .stage::after { content: ''; position: absolute; width: 284px; height: 284px; border: 1px solid #3c3329; border-radius: 50%; z-index: -1; }
+    .hamster-button { position: relative; display: grid; place-items: center; width: 252px; height: 252px; padding: 0; border: 0; border-radius: 50%; background: linear-gradient(145deg, #f7d78b, #efc064 54%, #dba143); box-shadow: inset 0 0 0 7px #e7b45a, inset 0 0 0 9px #ffdfa0, 0 10px 0 #8d612e, 0 18px 30px #09080a66; user-select: none; }
+    .hamster-button::before { content: ''; position: absolute; inset: 17px; border: 2px dashed #ba843c88; border-radius: 50%; pointer-events: none; }
+    .hamster-button::after { content: ''; position: absolute; inset: 23px; border: 1px solid #fbe0a2; border-radius: 50%; pointer-events: none; }
+    .hamster { position: relative; display: block; width: 210px; height: 216px; transform: scale(.88); pointer-events: none; }
+    .hamster span { display: block; position: absolute; }
+    .hamster .body { width: 132px; height: 128px; left: 39px; bottom: 5px; background: #bb7944; border-radius: 50% 50% 42% 42%; box-shadow: inset 8px 0 0 #cb8b4c, inset -7px -4px 0 #a9683b; }
+    .hamster .belly { width: 92px; height: 91px; left: 59px; bottom: 10px; background: #ffebc9; border-radius: 50% 50% 44% 44%; }
+    .hamster .ear { top: 11px; width: 56px; height: 59px; background: #b87845; border-radius: 50%; box-shadow: inset 5px 3px 0 #d59a59; }
+    .hamster .ear::after { content: ''; position: absolute; inset: 12px; background: #edb19b; border-radius: 50%; }
+    .hamster .ear-left { left: 22px; transform: rotate(-22deg); }
+    .hamster .ear-right { right: 22px; transform: rotate(22deg); }
+    .hamster .head { top: 31px; left: 21px; width: 168px; height: 144px; background: #d69a58; border-radius: 46% 46% 44% 44%; box-shadow: inset 6px 4px 0 #e3ad68, inset -5px -3px 0 #bd7e46; }
+    .hamster .tuft { width: 18px; height: 22px; background: #d69a58; border-radius: 90% 0; left: 95px; top: 23px; transform: rotate(-20deg); }
+    .hamster .tuft::after { content: ''; position: absolute; width: 15px; height: 18px; left: 9px; top: 3px; border-radius: 90% 0; background: #d69a58; transform: rotate(30deg); }
+    .hamster .cheek { width: 84px; height: 80px; background: #fff0d3; top: 94px; border-radius: 49% 47% 46% 48%; }
+    .hamster .cheek-left { left: 24px; transform: rotate(-7deg); }
+    .hamster .cheek-right { right: 24px; transform: rotate(7deg); }
+    .hamster .eye { top: 83px; width: 15px; height: 20px; background: #35271f; border-radius: 48%; }
+    .hamster .eye::after { content: ''; position: absolute; width: 5px; height: 6px; left: 3px; top: 3px; border-radius: 50%; background: #fff8e9; }
+    .hamster .eye-left { left: 65px; transform: rotate(-5deg); }
+    .hamster .eye-right { right: 65px; transform: rotate(5deg); }
+    .hamster .blush { width: 24px; height: 11px; top: 111px; background: #e9ae91; border-radius: 50%; }
+    .hamster .blush-left { left: 42px; transform: rotate(12deg); }
+    .hamster .blush-right { right: 42px; transform: rotate(-12deg); }
+    .hamster .nose { top: 114px; left: 98px; width: 15px; height: 11px; background: #8a5540; border-radius: 50% 50% 60% 60%; }
+    .hamster .mouth { top: 123px; left: 92px; width: 27px; height: 11px; }
+    .hamster .mouth::before, .hamster .mouth::after { content: ''; position: absolute; width: 14px; height: 10px; border: 2px solid #8a5540; border-block-start: 0; border-radius: 0 0 12px 12px; }
+    .hamster .mouth::after { left: 12px; }
+    .hamster .tooth { top: 133px; left: 101px; width: 10px; height: 8px; background: #fffaf0; border-radius: 0 0 3px 3px; }
+    .hamster .foot { bottom: 1px; width: 40px; height: 23px; background: #d59a67; border-radius: 50%; box-shadow: inset 0 -4px 0 #b67a4f; }
+    .hamster .foot-left { left: 43px; transform: rotate(-9deg); }
+    .hamster .foot-right { right: 43px; transform: rotate(9deg); }
+    .hamster .held-coin { bottom: 20px; left: 80px; width: 52px; height: 52px; background: #eeb94f; border-radius: 50%; box-shadow: inset 0 0 0 4px #d69739, inset 0 0 0 6px #ffe49b, 0 3px 0 #ba7c2c; }
+    .hamster .held-coin::after { content: ''; position: absolute; inset: 15px 19px; border: 2px solid #b97b2b; border-radius: 4px; transform: rotate(15deg); }
+    .hamster .paw { bottom: 43px; width: 27px; height: 21px; border-radius: 50%; background: #dda477; box-shadow: inset 0 -3px 0 #bb7e4f; }
+    .hamster .paw-left { left: 61px; transform: rotate(23deg); }
+    .hamster .paw-right { right: 60px; transform: rotate(-23deg); }
+    .spark { position: absolute; width: 16px; height: 16px; color: #a4844c; pointer-events: none; }
+    .spark-one { top: 37px; left: 28px; }
+    .spark-two { bottom: 38px; right: 27px; width: 12px; height: 12px; }
+    .tap-instruction { margin-block-start: var(--space-2); font-weight: 700; }
+    .keyboard-hint { display: none; margin-block-start: var(--space-2); font-size: var(--text-caption); color: var(--color-muted); }
+    kbd { display: inline-block; margin-inline: 2px; padding: 0 5px; border: 1px solid var(--color-border); border-radius: 4px; color: var(--color-subtle); font-size: var(--text-caption); }
+    .floating-coin { position: absolute; z-index: 4; pointer-events: none; color: var(--color-on-accent); background: var(--color-accent-hover); padding: 2px 10px; border-radius: 20px; font-size: var(--text-title); font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.25; opacity: 1; }
+    .next-upgrade { width: min(100%, 380px); margin: var(--space-5) auto var(--space-6); text-align: start; }
+    .goal-labels { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-3); font-size: var(--text-caption); }
+    .goal-label { color: var(--color-muted); }
+    .goal-name { font-weight: 700; }
+    .goal-value { margin-block-start: var(--space-2); color: var(--color-muted); font-size: var(--text-caption); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+    .goal-track { height: 5px; margin-block-start: var(--space-3); background: var(--color-control); border-radius: 8px; overflow: hidden; }
+    .goal-fill { height: 100%; width: 0%; border-radius: inherit; background: var(--color-accent); }
+    .goal-ready { color: var(--color-success); }
+    .shop { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-panel); padding: var(--space-5) var(--space-4) var(--space-4); }
+    .shop-header { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); }
+    .shop-header > svg { width: 23px; height: 23px; color: var(--color-muted); }
+    .shop-intro { color: var(--color-muted); font-size: var(--text-small); margin-block-start: var(--space-2); }
+    .upgrades { list-style: none; padding: 0; margin-block-start: var(--space-2); }
+    .upgrade { padding-block: var(--space-5); }
+    .upgrade + .upgrade { border-block-start: 1px solid var(--color-border); }
+    .upgrade-summary { display: flex; align-items: center; gap: var(--space-3); }
+    .upgrade-icon { display: grid; place-items: center; width: 48px; height: 48px; background: var(--color-control); border-radius: 14px; color: var(--color-subtle); flex-shrink: 0; }
+    .upgrade-icon svg { width: 24px; height: 24px; }
+    .upgrade-copy { min-width: 0; flex: 1; }
+    .upgrade-heading { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: var(--space-1) var(--space-2); }
+    .upgrade-level { color: var(--color-muted); font-size: var(--text-caption); font-variant-numeric: tabular-nums; }
+    .upgrade-effect { color: var(--color-muted); font-size: var(--text-small); margin-block-start: var(--space-1); }
+    .upgrade-purchase { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); margin-block-start: var(--space-4); }
+    .upgrade-need { min-width: 0; font-size: var(--text-caption); color: var(--color-muted); overflow-wrap: anywhere; }
+    .upgrade-need.ready { color: var(--color-success); }
+    .buy-button { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px; min-width: 112px; min-height: 44px; padding: 10px 12px; border: 1px solid var(--color-control-border); border-radius: var(--radius-control); background: var(--color-text); color: var(--color-page); font-size: var(--text-small); font-weight: 700; line-height: 1.4; }
+    .buy-button svg { width: 16px; height: 16px; }
+    .buy-price { overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+    .buy-button:disabled { background: var(--color-control); color: var(--color-muted); border-color: transparent; }
+    .shop-message { display: flex; align-items: flex-start; gap: var(--space-2); padding-block-start: var(--space-4); border-block-start: 1px solid var(--color-border); color: var(--color-muted); font-size: var(--text-caption); min-height: 53px; }
+    .shop-message svg { width: 16px; height: 16px; margin-block-start: 1px; }
+    .shop-message.purchased { color: var(--color-success); }
+    .site-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-2) var(--space-5); padding-block: var(--space-5); border-block-start: 1px solid var(--color-border); color: var(--color-muted); font-size: var(--text-caption); }
+    .session-note { display: flex; align-items: center; gap: 6px; }
+    .session-note svg { width: 14px; height: 14px; }
+    dialog { width: min(100% - 2rem, 420px); max-height: calc(100% - 3rem); padding: var(--space-5); border: 1px solid var(--color-border); border-radius: var(--radius-panel); background: var(--color-surface); color: var(--color-text); overscroll-behavior: contain; }
+    dialog::backdrop { background: #0b090bc9; }
+    .dialog-header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
+    .close-button { display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: var(--radius-control); background: var(--color-control); }
+    .close-button svg { width: 20px; height: 20px; }
+    .instructions { padding-inline-start: var(--space-5); margin-block: var(--space-5); color: var(--color-subtle); font-size: var(--text-small); }
+    .instructions li + li { margin-block-start: var(--space-3); }
+    .help-note { padding-block-start: var(--space-4); border-block-start: 1px solid var(--color-border); color: var(--color-muted); font-size: var(--text-small); }
+    noscript p { padding: var(--space-5); color: var(--color-accent); }
+    @media (hover: hover) {
+      .help-button:hover, .close-button:hover { background: var(--color-surface-hover); color: var(--color-text); }
+      .buy-button:not(:disabled):hover { background: var(--color-subtle); }
+      .hamster-button:hover { filter: brightness(1.035); }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .hamster-button { transition: transform 100ms var(--ease), filter 100ms var(--ease); }
+      .hamster-button:active { transform: scale(.96); }
+      .buy-button, .help-button, .close-button { transition: background-color 150ms var(--ease), color 150ms var(--ease); }
+      .floating-coin { animation: coin-rise 700ms ease-out both; }
+      @keyframes coin-rise { 0% { opacity: 1; transform: translate(-50%, -50%) scale(.8); } 20% { opacity: 1; transform: translate(-50%, -80%) scale(1); } 100% { opacity: 0; transform: translate(-50%, -110px) scale(1); } }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .floating-coin { transform: translate(-50%, -50%); animation: coin-fade 500ms linear both; }
+      @keyframes coin-fade { to { opacity: 0; } }
+    }
+    @media (min-width: 36rem) {
+      .shell { width: min(100% - 4rem, 1120px); }
+      .help-label { display: inline; }
+      .brand-name { display: inline; }
+      .shop { padding-inline: var(--space-5); }
+    }
+    @media (min-width: 56rem) {
+      .site-header { min-height: 112px; }
+      h1 { font-size: var(--text-title); }
+      .brand-mark { width: 44px; height: 44px; }
+      .brand-tagline { font-size: var(--text-small); }
+      .game-layout { display: grid; grid-template-columns: minmax(0, 1fr) 380px; align-items: start; gap: var(--space-7); padding-block: var(--space-7); }
+      .play-area { padding-block-start: var(--space-2); }
+      .balance { margin-block-end: var(--space-5); }
+      .stage { height: 352px; margin-block-start: var(--space-5); }
+      .stage::after { width: 330px; height: 330px; }
+      .hamster-button { width: 294px; height: 294px; }
+      .hamster { transform: scale(1.06); }
+      .spark-one { top: 46px; left: 6px; }
+      .spark-two { bottom: 48px; right: 7px; }
+      .keyboard-hint { display: block; }
+      .next-upgrade { margin-block: var(--space-6) 0; }
+      .shop { margin-block-start: var(--space-2); padding-block-start: var(--space-5); }
+      .shop-intro { max-width: 30ch; }
+      .upgrade { padding-block: 28px; }
+      .site-footer { padding-block: var(--space-5) var(--space-6); }
+    }
+    @media (pointer: coarse) { .keyboard-hint { display: none; } }
+    @media (forced-colors: active) {
+      button:focus-visible, a:focus-visible { outline-color: Highlight; }
+      .hamster-button { border: 3px solid ButtonText; }
+      .hamster { forced-color-adjust: none; }
+      .goal-track { border: 1px solid CanvasText; }
+      .goal-fill { background: Highlight; }
+    }
+    @supports (padding: max(0px)) { body { padding-inline: max(0px, env(safe-area-inset-left)) max(0px, env(safe-area-inset-right)); padding-block-end: env(safe-area-inset-bottom); } }
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" class="sr-only" aria-hidden="true"><defs>
+    <symbol id="icon-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 8.5h4v7h-4z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M9.8 9a2.3 2.3 0 0 1 4.4 1c0 1.8-2.2 1.7-2.2 3.6M12 16.5v.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="icon-spark" viewBox="0 0 24 24"><path d="m12 1 2.7 8.3L23 12l-8.3 2.7L12 23l-2.7-8.3L1 12l8.3-2.7z" fill="currentColor"/></symbol>
+    <symbol id="icon-tap" viewBox="0 0 24 24"><path d="M9 12V5a2 2 0 0 1 4 0v6l1.2-1a1.7 1.7 0 0 1 2 .1l3 2a3 3 0 0 1 1.2 3.2l-1 4a2 2 0 0 1-2 1.5H12a3 3 0 0 1-2.3-1.1l-4.2-5.2a1.8 1.8 0 0 1 2.4-2.6l2.1 1.6M5 6H3m3-3L4.5 1.5M17 5h3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-auto" viewBox="0 0 24 24"><path d="M6 8a7 7 0 0 1 12-1l2 2M20 4v5h-5M18 16a7 7 0 0 1-12 1l-2-2M4 20v-5h5m4-7-3 5h4l-3 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-multiply" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17M19 3v3m-1.5-1.5h3M4 18v3m-1.5-1.5h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="icon-shop" viewBox="0 0 24 24"><path d="M4 8h16l-1 13H5L4 8Zm4 0V6a4 4 0 0 1 8 0v2m-8 4v.1m8-.1v.1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 11v5m0-9v.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  </defs></svg>
+
+  <header class="site-header shell">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="14" fill="#f1c56c"/><circle cx="14" cy="13" r="7" fill="#b87845"/><circle cx="30" cy="13" r="7" fill="#b87845"/><circle cx="14" cy="13" r="3.5" fill="#edb19b"/><circle cx="30" cy="13" r="3.5" fill="#edb19b"/><ellipse cx="22" cy="25" rx="16" ry="15" fill="#d69a58"/><ellipse cx="22" cy="31" rx="13" ry="8" fill="#fff0d3"/><ellipse cx="16" cy="23" rx="2" ry="2.8" fill="#35271f"/><ellipse cx="28" cy="23" rx="2" ry="2.8" fill="#35271f"/><path d="m19.5 28 2.5 3 2.5-3z" fill="#8a5540"/><path d="M18 33q2 2 4 0 2 2 4 0" fill="none" stroke="#8a5540" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <div><h1>Hamster <span class="brand-name">Tap Tycoon</span></h1><p class="brand-tagline">Small paws. Big business.</p></div>
+    </div>
+    <button class="help-button" id="help-button" type="button" aria-label="How to play"><svg aria-hidden="true"><use href="#icon-help"/></svg><span class="help-label">How to play</span></button>
+  </header>
+
+  <main class="game-layout shell">
+    <section class="play-area" aria-label="Hamster tap game">
+      <p class="balance-label" id="balance-label"><svg class="coin-icon" aria-hidden="true"><use href="#icon-coin"/></svg>Coin balance</p>
+      <output class="balance" id="balance" aria-labelledby="balance-label" aria-live="off">0</output>
+      <dl class="earning-stats">
+        <div class="stat"><dt>Coins per tap</dt><dd><span class="stat-symbol" aria-hidden="true">+</span><span id="per-tap">1</span></dd></div>
+        <div class="stat"><dt>Coins per second</dt><dd><span class="stat-symbol" aria-hidden="true">+</span><span id="per-second">0</span></dd></div>
+        <div class="stat"><dt>Coin multiplier</dt><dd><span id="multiplier">1</span><span class="stat-symbol" aria-hidden="true">×</span></dd></div>
+      </dl>
+
+      <div class="stage" id="stage">
+        <svg class="spark spark-one" aria-hidden="true"><use href="#icon-spark"/></svg>
+        <svg class="spark spark-two" aria-hidden="true"><use href="#icon-spark"/></svg>
+        <button class="hamster-button" id="hamster-button" type="button" aria-label="Tap hamster to earn 1 coin" aria-describedby="tap-instruction">
+          <span class="hamster" aria-hidden="true">
+            <span class="body"></span><span class="belly"></span>
+            <span class="ear ear-left"></span><span class="ear ear-right"></span>
+            <span class="head"></span><span class="tuft"></span>
+            <span class="cheek cheek-left"></span><span class="cheek cheek-right"></span>
+            <span class="eye eye-left"></span><span class="eye eye-right"></span>
+            <span class="blush blush-left"></span><span class="blush blush-right"></span>
+            <span class="nose"></span><span class="mouth"></span><span class="tooth"></span>
+            <span class="foot foot-left"></span><span class="foot foot-right"></span>
+            <span class="held-coin"></span><span class="paw paw-left"></span><span class="paw paw-right"></span>
+          </span>
+        </button>
+      </div>
+      <p class="tap-instruction" id="tap-instruction">Tap the hamster. Make it rain.</p>
+      <p class="keyboard-hint">Or focus the hamster and press <kbd>Space</kbd> or <kbd>Enter</kbd></p>
+      <div class="next-upgrade">
+        <div class="goal-labels"><span class="goal-label" id="goal-label">Next upgrade</span><span class="goal-name" id="goal-name">Stronger tap</span></div>
+        <div class="goal-track" id="goal" role="progressbar" aria-label="Coins toward Stronger tap" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0 of 20 coins"><div class="goal-fill" id="goal-fill"></div></div>
+        <p class="goal-value" id="goal-value">0 / 20 coins</p>
+      </div>
+    </section>
+
+    <section class="shop" aria-labelledby="shop-title">
+      <div class="shop-header"><h2 id="shop-title">Upgrade shop</h2><svg aria-hidden="true"><use href="#icon-shop"/></svg></div>
+      <p class="shop-intro">A little investment. A lot more coins.</p>
+      <ul class="upgrades">
+        <li class="upgrade" id="upgrade-tap">
+          <div class="upgrade-summary"><span class="upgrade-icon"><svg aria-hidden="true"><use href="#icon-tap"/></svg></span><div class="upgrade-copy"><div class="upgrade-heading"><h3 id="tap-title">Stronger tap</h3><span class="upgrade-level" id="tap-level">Level 0</span></div><p class="upgrade-effect" id="tap-effect">+1 base coin per tap</p></div></div>
+          <div class="upgrade-purchase"><p class="upgrade-need" id="tap-need">20 more coins</p><button class="buy-button" id="buy-tap" type="button" disabled aria-label="Buy Stronger tap for 20 coins" aria-describedby="tap-effect tap-need"><span>Buy</span><svg aria-hidden="true"><use href="#icon-coin"/></svg><span class="buy-price" id="tap-price">20</span></button></div>
+        </li>
+        <li class="upgrade" id="upgrade-auto">
+          <div class="upgrade-summary"><span class="upgrade-icon"><svg aria-hidden="true"><use href="#icon-auto"/></svg></span><div class="upgrade-copy"><div class="upgrade-heading"><h3 id="auto-title">Auto-tapper</h3><span class="upgrade-level" id="auto-level">Level 0</span></div><p class="upgrade-effect" id="auto-effect">+1 base coin per second</p></div></div>
+          <div class="upgrade-purchase"><p class="upgrade-need" id="auto-need">60 more coins</p><button class="buy-button" id="buy-auto" type="button" disabled aria-label="Buy Auto-tapper for 60 coins" aria-describedby="auto-effect auto-need"><span>Buy</span><svg aria-hidden="true"><use href="#icon-coin"/></svg><span class="buy-price" id="auto-price">60</span></button></div>
+        </li>
+        <li class="upgrade" id="upgrade-multiplier">
+          <div class="upgrade-summary"><span class="upgrade-icon"><svg aria-hidden="true"><use href="#icon-multiply"/></svg></span><div class="upgrade-copy"><div class="upgrade-heading"><h3 id="multiplier-title">Coin multiplier</h3><span class="upgrade-level" id="multiplier-level">Level 0</span></div><p class="upgrade-effect" id="multiplier-effect">+1× to all coin earnings</p></div></div>
+          <div class="upgrade-purchase"><p class="upgrade-need" id="multiplier-need">150 more coins</p><button class="buy-button" id="buy-multiplier" type="button" disabled aria-label="Buy Coin multiplier for 150 coins" aria-describedby="multiplier-effect multiplier-need"><span>Buy</span><svg aria-hidden="true"><use href="#icon-coin"/></svg><span class="buy-price" id="multiplier-price">150</span></button></div>
+        </li>
+      </ul>
+      <p class="shop-message" id="shop-message"><svg aria-hidden="true"><use href="#icon-info"/></svg><span id="shop-message-text" role="status">Upgrades stack. Prices grow with each purchase.</span></p>
+    </section>
+  </main>
+
+  <footer class="site-footer shell"><p>A game for the hamster economy.</p><p class="session-note"><svg aria-hidden="true"><use href="#icon-info"/></svg>Just this session. Refresh to start over.</p></footer>
+  <div class="sr-only" id="tap-status" role="status" aria-atomic="true"></div>
+  <dialog id="help-dialog" aria-labelledby="help-title">
+    <div class="dialog-header"><h2 id="help-title">How to play</h2><button class="close-button" id="close-help" type="button" aria-label="Close how to play" autofocus><svg aria-hidden="true"><use href="#icon-close"/></svg></button></div>
+    <ol class="instructions"><li>Tap the hamster to earn coins. With a keyboard, focus it and press Space or Enter.</li><li>Buy a stronger tap for +1 base coin per tap, or an auto-tapper for +1 base coin per second.</li><li>Each coin multiplier adds 1× to all earnings. At 2×, both your taps and auto-tappers earn twice as much.</li><li>Upgrades stack, and each purchase raises that upgrade’s next price. Keep growing at your own pace.</li></ol>
+    <p class="help-note">Coins are just for fun. Progress stays in this page’s memory and resets on refresh. No account needed.</p>
+  </dialog>
+  <noscript><p>Enable JavaScript to tap the hamster and buy upgrades. This game runs entirely in your browser.</p></noscript>
+
+  <script>
+    'use strict';
+    (() => {
+      /** @template {HTMLElement} T @param {string} id @param {new (...args: any[]) => T} kind @returns {T} */
+      function element(id, kind) {
+        const node = document.getElementById(id);
+        if (!(node instanceof kind)) throw new Error(`Missing game element: ${id}`);
+        return node;
+      }
+      const format = new Intl.NumberFormat('en-US');
+      /** @param {bigint} value */
+      const number = (value) => format.format(value);
+      const hamster = element('hamster-button', HTMLButtonElement);
+      const stage = element('stage', HTMLDivElement);
+      const balance = element('balance', HTMLOutputElement);
+      const perTap = element('per-tap', HTMLSpanElement);
+      const perSecond = element('per-second', HTMLSpanElement);
+      const multiplierText = element('multiplier', HTMLSpanElement);
+      const goal = element('goal', HTMLDivElement);
+      const goalFill = element('goal-fill', HTMLDivElement);
+      const goalLabel = element('goal-label', HTMLSpanElement);
+      const goalName = element('goal-name', HTMLSpanElement);
+      const goalValue = element('goal-value', HTMLParagraphElement);
+      const tapStatus = element('tap-status', HTMLDivElement);
+      const shopMessage = element('shop-message', HTMLParagraphElement);
+      const shopMessageText = element('shop-message-text', HTMLSpanElement);
+      const help = element('help-dialog', HTMLDialogElement);
+      const helpButton = element('help-button', HTMLButtonElement);
+      const closeHelp = element('close-help', HTMLButtonElement);
+
+      /** @typedef {'tap' | 'auto' | 'multiplier'} UpgradeId */
+      /** @typedef {{id: UpgradeId, name: string, level: bigint, price: bigint, growth: bigint, button: HTMLButtonElement, levelText: HTMLSpanElement, priceText: HTMLSpanElement, needText: HTMLParagraphElement}} Upgrade */
+      /** @type {Array<{id: UpgradeId, name: string, price: bigint, growth: bigint}>} */
+      const definitions = [
+        { id: 'tap', name: 'Stronger tap', price: 20n, growth: 160n },
+        { id: 'auto', name: 'Auto-tapper', price: 60n, growth: 165n },
+        { id: 'multiplier', name: 'Coin multiplier', price: 150n, growth: 220n }
+      ];
+      /** @type {Upgrade[]} */
+      const upgrades = definitions.map((item) => ({ ...item, level: 0n,
+        button: element(`buy-${item.id}`, HTMLButtonElement),
+        levelText: element(`${item.id}-level`, HTMLSpanElement),
+        priceText: element(`${item.id}-price`, HTMLSpanElement),
+        needText: element(`${item.id}-need`, HTMLParagraphElement)
+      }));
+      let coins = 0n;
+      let baseTap = 1n;
+      let autoTappers = 0n;
+      let multiplier = 1n;
+      let pendingMilliCoins = 0n;
+      let lastTick = performance.now();
+      let announcementTimer = 0;
+      const tapRate = () => baseTap * multiplier;
+      const autoRate = () => autoTappers * multiplier;
+
+      // Settle at the old rate before buying; a new multiplier never applies retroactively.
+      function settleAuto() {
+        const now = performance.now();
+        const elapsed = Math.max(0, Math.floor(now - lastTick));
+        lastTick += elapsed;
+        if (autoTappers === 0n) return false;
+        pendingMilliCoins += BigInt(elapsed) * autoRate();
+        const earned = pendingMilliCoins / 1000n;
+        pendingMilliCoins %= 1000n;
+        coins += earned;
+        return earned > 0n;
+      }
+
+      function render() {
+        balance.value = number(coins);
+        perTap.textContent = number(tapRate());
+        perSecond.textContent = number(autoRate());
+        multiplierText.textContent = number(multiplier);
+        hamster.setAttribute('aria-label', `Tap hamster to earn ${number(tapRate())} ${tapRate() === 1n ? 'coin' : 'coins'}`);
+        for (const upgrade of upgrades) {
+          const ready = coins >= upgrade.price;
+          upgrade.button.disabled = !ready;
+          upgrade.button.setAttribute('aria-label', `Buy ${upgrade.name} for ${number(upgrade.price)} coins`);
+          upgrade.levelText.textContent = `Level ${number(upgrade.level)}`;
+          upgrade.priceText.textContent = number(upgrade.price);
+          upgrade.needText.textContent = ready ? 'Ready to upgrade' : `${number(upgrade.price - coins)} more ${upgrade.price - coins === 1n ? 'coin' : 'coins'}`;
+          upgrade.needText.classList.toggle('ready', ready);
+        }
+        const next = upgrades.reduce((best, upgrade) => upgrade.price < best.price ? upgrade : best);
+        const ready = coins >= next.price;
+        const percent = ready ? 100 : Number(coins * 100n / next.price);
+        goalFill.style.width = `${percent}%`;
+        goal.setAttribute('aria-label', `Coins toward ${next.name}`);
+        goal.setAttribute('aria-valuenow', `${percent}`);
+        goal.setAttribute('aria-valuetext', `${number(coins)} of ${number(next.price)} coins${ready ? ', ready to upgrade' : ''}`);
+        goalLabel.textContent = ready ? 'Ready when you are' : 'Next upgrade';
+        goalLabel.classList.toggle('goal-ready', ready);
+        goalName.textContent = next.name;
+        goalValue.textContent = `${number(coins)} / ${number(next.price)} coins`;
+      }
+
+      /** @param {MouseEvent} event @param {bigint} earned */
+      function floatCoin(event, earned) {
+        // Limit transient elements during very fast tapping, and remove them even in reduced motion.
+        while (stage.querySelectorAll('.floating-coin').length >= 16) stage.querySelector('.floating-coin')?.remove();
+        const floating = document.createElement('span');
+        floating.className = 'floating-coin';
+        floating.setAttribute('aria-hidden', 'true');
+        floating.textContent = `+${number(earned)}`;
+        const bounds = stage.getBoundingClientRect();
+        const x = event.detail === 0 ? bounds.width / 2 : event.clientX - bounds.left;
+        const y = event.detail === 0 ? bounds.height / 2 : event.clientY - bounds.top;
+        floating.style.left = `${Math.max(48, Math.min(bounds.width - 48, x))}px`;
+        floating.style.top = `${Math.max(120, Math.min(bounds.height - 30, y))}px`;
+        stage.append(floating);
+        window.setTimeout(() => floating.remove(), 750);
+      }
+
+      hamster.addEventListener('click', (event) => {
+        settleAuto();
+        const earned = tapRate();
+        coins += earned;
+        render();
+        floatCoin(event, earned);
+        window.clearTimeout(announcementTimer);
+        announcementTimer = window.setTimeout(() => { tapStatus.textContent = `${number(coins)} coins. ${number(tapRate())} per tap.`; }, 350);
+      });
+
+      for (const upgrade of upgrades) {
+        upgrade.button.addEventListener('click', () => {
+          settleAuto();
+          if (coins < upgrade.price) { render(); return; }
+          coins -= upgrade.price;
+          upgrade.level += 1n;
+          upgrade.price = (upgrade.price * upgrade.growth + 99n) / 100n;
+          if (upgrade.id === 'tap') baseTap += 1n;
+          if (upgrade.id === 'auto') autoTappers += 1n;
+          if (upgrade.id === 'multiplier') multiplier += 1n;
+          render();
+          window.clearTimeout(announcementTimer);
+          tapStatus.textContent = '';
+          shopMessage.classList.add('purchased');
+          shopMessageText.textContent = `${upgrade.name} is level ${number(upgrade.level)}. ${number(coins)} coins left.`;
+          // An unaffordable button becomes disabled; return keyboard focus to the hamster.
+          if (upgrade.button.disabled && document.activeElement === upgrade.button) hamster.focus({ preventScroll: true });
+        });
+      }
+
+      helpButton.addEventListener('click', () => help.showModal());
+      closeHelp.addEventListener('click', () => help.close());
+      help.addEventListener('close', () => helpButton.focus({ preventScroll: true }));
+      document.addEventListener('visibilitychange', () => { if (settleAuto()) render(); });
+      window.setInterval(() => { if (settleAuto()) render(); }, 100);
+      render();
+    })();
+  </script>
+</body>
+</html>

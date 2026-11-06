@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#19181b"/>
+  <path d="M80 84h1040M80 550h1040" stroke="#353237"/>
+  <g font-family="system-ui, sans-serif">
+    <text x="80" y="236" font-size="76" font-weight="700" letter-spacing="-3" fill="#f7f2e9">Hamster</text>
+    <text x="80" y="326" font-size="76" font-weight="700" letter-spacing="-3" fill="#f1c56c">Tap Tycoon</text>
+    <text x="84" y="396" font-size="25" fill="#aaa4ad">Small paws. Big business.</text>
+    <text x="84" y="507" font-size="18" fill="#d9d3db">Tap. Upgrade. Grow your tiny empire.</text>
+  </g>
+  <circle cx="905" cy="310" r="205" fill="none" stroke="#3c3329"/>
+  <circle cx="905" cy="321" r="183" fill="#8d612e"/>
+  <circle cx="905" cy="310" r="183" fill="#e7b45a"/>
+  <circle cx="905" cy="310" r="172" fill="#f1c56c" stroke="#ffdfa0" stroke-width="3"/>
+  <circle cx="905" cy="310" r="161" fill="none" stroke="#ba843c" stroke-opacity=".5" stroke-width="2" stroke-dasharray="7 5"/>
+  <g transform="translate(753 141) scale(1.45)">
+    <ellipse cx="105" cy="160" rx="65" ry="59" fill="#bb7944"/>
+    <ellipse cx="105" cy="172" rx="45" ry="44" fill="#ffebc9"/>
+    <ellipse cx="48" cy="49" rx="27" ry="29" fill="#b87845" transform="rotate(-20 48 49)"/>
+    <ellipse cx="163" cy="49" rx="27" ry="29" fill="#b87845" transform="rotate(20 163 49)"/>
+    <ellipse cx="48" cy="49" rx="15" ry="17" fill="#edb19b"/>
+    <ellipse cx="163" cy="49" rx="15" ry="17" fill="#edb19b"/>
+    <ellipse cx="105" cy="107" rx="84" ry="72" fill="#c58a4d"/>
+    <ellipse cx="106" cy="105" rx="79" ry="69" fill="#d69a58"/>
+    <path d="M97 41q-3-18 12-20l-1 11q13-7 15 1l-14 13z" fill="#d69a58"/>
+    <ellipse cx="66" cy="140" rx="42" ry="39" fill="#fff0d3"/>
+    <ellipse cx="145" cy="140" rx="42" ry="39" fill="#fff0d3"/>
+    <ellipse cx="73" cy="98" rx="7.5" ry="10" fill="#35271f"/>
+    <ellipse cx="138" cy="98" rx="7.5" ry="10" fill="#35271f"/>
+    <ellipse cx="71" cy="94" rx="2.5" ry="3" fill="#fff8e9"/>
+    <ellipse cx="136" cy="94" rx="2.5" ry="3" fill="#fff8e9"/>
+    <ellipse cx="54" cy="124" rx="12" ry="5.5" fill="#e9ae91"/>
+    <ellipse cx="157" cy="124" rx="12" ry="5.5" fill="#e9ae91"/>
+    <ellipse cx="105" cy="123" rx="7.5" ry="5.5" fill="#8a5540"/>
+    <path d="M105 128v6q-7 9-13 0m13 0q7 9 13 0" fill="none" stroke="#8a5540" stroke-width="2.5" stroke-linecap="round"/>
+    <rect x="101" y="140" width="9" height="8" rx="2" fill="#fffaf0"/>
+    <ellipse cx="65" cy="214" rx="20" ry="11" fill="#d59a67"/>
+    <ellipse cx="146" cy="214" rx="20" ry="11" fill="#d59a67"/>
+    <circle cx="105" cy="181" r="27" fill="#d69739"/>
+    <circle cx="105" cy="181" r="22" fill="#eeb94f" stroke="#ffe49b" stroke-width="2"/>
+    <rect x="99" y="170" width="12" height="22" rx="3" fill="none" stroke="#b97b2b" stroke-width="2" transform="rotate(15 105 181)"/>
+    <ellipse cx="73" cy="170" rx="14" ry="10" fill="#dda477" transform="rotate(23 73 170)"/>
+    <ellipse cx="138" cy="170" rx="14" ry="10" fill="#dda477" transform="rotate(-23 138 170)"/>
+  </g>
+  <path d="m699 152 3 9 9 3-9 3-3 9-3-9-9-3 9-3zM1122 439l3 9 9 3-9 3-3 9-3-9-9-3 9-3z" fill="#a4844c"/>
+</svg>

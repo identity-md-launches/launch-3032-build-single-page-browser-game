@@ -1,0 +1,30 @@
+{
+  "browser": "155.0.8059.12",
+  "engine": "chromium",
+  "passed": 21,
+  "checks": [
+    "Initial state: zero balance, 1 coin/tap, no automatic income, three locked upgrades",
+    "At 390 × 844, the complete primary button is visible on the first screen",
+    "Real touch earns one coin and creates +1 feedback",
+    "Space and Enter each activate the focused hamster",
+    "Stronger tap unlocks at exactly 20 coins and charges its full price",
+    "Keyboard focus remains usable after buying an upgrade that becomes disabled",
+    "Auto-tapper charges 60, increases its next price to 99, and earns whole coins over time",
+    "Multiplier charges 150, increases the next price to 330, and multiplies taps and automatic income",
+    "Repeated purchases stack and prices round upward: 32→52, 99→164, 330→726",
+    "Fast taps keep feedback bounded and clean it up",
+    "Native help dialog supports keyboard focus, Escape and return to the trigger",
+    "Reduced motion uses a finite opacity fade, with no travel or endless animation",
+    "Reload resets all progress and no cookies or browser storage are used",
+    "Once loaded, the game, purchases and auto-tapper work with the browser offline",
+    "Responsive reflow: no horizontal overflow at 320, 390, 576, 895, 896, 1024 or 1440",
+    "200% text enlargement reflows without horizontal overflow",
+    "Forced colors preserve the hamster illustration and use a system focus indicator",
+    "Automated accessibility audit has no WCAG A/AA violations in initial, upgraded and help states",
+    "The downloaded HTML runs directly from file:// with no server",
+    "Sharing metadata resolves to actual local favicon and a 1200 × 630 PNG",
+    "No page/console/resource errors and no external network requests"
+  ],
+  "errors": [],
+  "remoteRequests": []
+}

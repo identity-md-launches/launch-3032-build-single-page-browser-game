@@ -1,0 +1,38 @@
+# Per-file delivery budgets are declared in PATH_BUDGET.json.
+# Generated dependencies and caches are excluded at every nesting level.
+**/node_modules/
+**/.cache/
+**/.npm/
+**/__pycache__/
+**/playwright-report/
+**/test-results/
+**/*.tgz
+/test/scratch/
+
+# Keep only the required, explicitly budgeted review artifacts.
+!/artifacts/
+/artifacts/**
+!/artifacts/validation.md
+!/artifacts/THIRD_PARTY_NOTICES.md
+!/artifacts/design-guidance-LICENSE.txt
+!/artifacts/taste-checks.json
+!/artifacts/interaction-results.json
+!/artifacts/accessibility.json
+!/artifacts/help-contrast.json
+!/artifacts/submission-size.json
+!/artifacts/screenshots/
+!/artifacts/screenshots/mobile-390.png
+!/artifacts/screenshots/desktop-1440.png
+!/artifacts/screenshots/mobile-320.png
+!/artifacts/screenshots/keyboard-focus.png
+!/artifacts/screenshots/forced-colors.png
+!/artifacts/screenshots/forced-colors-before.png
+!/artifacts/screenshots/help-dialog.png
+!/artifacts/screenshots/upgraded-mobile.png
+
+# The completed static export belongs in the submission.
+!/dist/
+!/dist/index.html
+!/dist/assets/
+!/dist/assets/favicon.svg
+!/dist/assets/share-card.png

@@ -1,0 +1,19 @@
+{
+  "name": "hamster-tap-tycoon",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A tiny, offline-friendly hamster clicker game in one HTML page.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/preview.mjs",
+    "typecheck": "node scripts/typecheck.mjs",
+    "test": "node scripts/validate.mjs"
+  },
+  "engines": { "node": ">=22" },
+  "devDependencies": {
+    "axe-core": "4.10.3",
+    "playwright-core": "1.58.2",
+    "typescript": "5.9.3"
+  }
+}

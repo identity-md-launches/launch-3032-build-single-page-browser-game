@@ -1,0 +1,59 @@
+[
+  {
+    "state": "initial",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "state": "upgraded",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "state": "help",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "nodes": [
+          {
+            "target": [
+              "ol > li:nth-child(1)"
+            ],
+            "html": "<li>Tap the hamster to earn coins. With a keyboard, focus it and press Space or Enter.</li>",
+            "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+          },
+          {
+            "target": [
+              "ol > li:nth-child(2)"
+            ],
+            "html": "<li>Buy a stronger tap for +1 base coin per tap, or an auto-tapper for +1 base coin per second.</li>",
+            "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+          },
+          {
+            "target": [
+              "ol > li:nth-child(3)"
+            ],
+            "html": "<li>Each coin multiplier adds 1× to all earnings. At 2×, both your taps and auto-tappers earn twice as much.</li>",
+            "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+          },
+          {
+            "target": [
+              "li:nth-child(4)"
+            ],
+            "html": "<li>Upgrades stack, and each purchase raises that upgrade’s next price. Keep growing at your own pace.</li>",
+            "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+          },
+          {
+            "target": [
+              ".help-note"
+            ],
+            "html": "<p class=\"help-note\">Coins are just for fun. Progress stays in this page’s memory and resets on refresh. No account needed.</p>",
+            "summary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+          }
+        ]
+      }
+    ]
+  }
+]
